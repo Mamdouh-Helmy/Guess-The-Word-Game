@@ -194,6 +194,7 @@ h1{
         -o-transform: translateX(-50%);
         top: 50%;
         width: 500px;
+        height: 110px;
         background-color: #333;
         color: white;
         padding: 20px;
