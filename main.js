@@ -7,13 +7,12 @@ document.querySelector("footer").innerHTML = `${gameName} Game Created By Mamdou
 
 // Setting Game Options
 let numbersOfTries = 6;
-let numberOfLetters = 6;
 let currentTry = 1;
 let numberOfHints = 2;
 
 //Mange Words
 let wordToGuess = "";
-const words = ["Create" , "Update" , "Delete" , "Master" , "Branch" , "Mainly" , "Mamdoh" , "School"];
+const words = ["حمزه" , "عبيده" , "محمد" , "احمد" , "حنين" , "حلمي" , "يوسف" , "ممدوح"];
 wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase();
 let messageArea = document.querySelector(".message");
 
@@ -36,7 +35,7 @@ function generateInput(){
         }
 
         //Create Inputs
-        for(let j = 1 ; j <= numberOfLetters ; j++){
+        for(let j = 1 ; j <= wordToGuess.length ; j++){
             const input = document.createElement("input");
             input.type = "text";
             input.id = `guess-${i}-letter-${j}`;
@@ -85,7 +84,7 @@ console.log(wordToGuess)
 
 function handleGuesses(){
     let sucessGuess = true;
-    for(let i = 1 ; i <= numberOfLetters ; i++){
+    for(let i = 1 ; i <= wordToGuess.length ; i++){
         const inputFiled = document.querySelector(`#guess-${currentTry}-letter-${i}`);
         const letter = inputFiled.value.toLowerCase();
         const actualLetter = wordToGuess[i - 1];
@@ -107,8 +106,14 @@ function handleGuesses(){
     if(sucessGuess === true){
         messageArea.style.display = 'block';
         messageArea.innerHTML = `You Win The Word Is <span>${wordToGuess}</span>`;
+        setTimeout(() => {
+            location.reload();
+        } , 3000)
         if(numberOfHints === 2){
             messageArea.innerHTML = `You Win The Word Is <span>${wordToGuess}</span> <br> <p>Congratz You Didn't Use Hints</p>`;
+            setTimeout(() => {
+                location.reload();
+            } , 3000)
         }
 
         let allTries = document.querySelectorAll(".inputs > div");
@@ -133,6 +138,9 @@ function handleGuesses(){
             guessButton.disabled = true;
             messageArea.innerHTML = `You Los The Word Is <span>${wordToGuess}</span>`;
             messageArea.style.display = 'block';
+            setTimeout(() => {
+                location.reload();
+            } , 3000)
         }
 
     }
